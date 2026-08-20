@@ -1,38 +1,38 @@
-# Tải model thủ công
+# Táº£i model thá»§ cÃ´ng
 
-Dùng trang này khi `make setup` không tải được model (mạng trường chặn Hugging Face,
-captive portal, mạng quá chậm).
+DÃ¹ng trang nÃ y khi `make setup` khÃ´ng táº£i ÄÆ°á»£c model (máº¡ng trÆ°á»ng cháº·n Hugging Face,
+captive portal, máº¡ng quÃ¡ cháº­m).
 
-## Chọn model trước
+## Chá»n model trÆ°á»c
 
-Lab có hai option — tải đúng bộ của model bạn chọn (xem [GUIDE.md](../../GUIDE.md) Bước 0.2):
+Lab cÃ³ hai option â táº£i ÄÃºng bá» cá»§a model báº¡n chá»n (xem [GUIDE.md](../../GUIDE.md) BÆ°á»c 0.2):
 
-| `LAB_MODEL=` | Model | Tổng tải |
+| `LAB_MODEL=` | Model | Tá»ng táº£i |
 |---|---|--:|
-| `gemma4-e2b` *(mặc định)* | Gemma 4 E2B | ~5.2 GB |
+| `gemma4-e2b` *(máº·c Äá»nh)* | Gemma 4 E2B | ~5.2 GB |
 | `qwen35-0.8b` | Qwen3.5 0.8B | ~0.9 GB |
 
-## Option A — Gemma 4 E2B (mặc định)
+## Option A â Gemma 4 E2B (máº·c Äá»nh)
 
 **[unsloth/gemma-4-E2B-it-GGUF](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF)**
-— Apache-2.0, **không gated**: không cần login, không cần token, không cần accept license.
+â Apache-2.0, **khÃ´ng gated**: khÃ´ng cáº§n login, khÃ´ng cáº§n token, khÃ´ng cáº§n accept license.
 
-Xem toàn bộ file: **[tree/main](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/tree/main)**
+Xem toÃ n bá» file: **[tree/main](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/tree/main)**
 
-| Vai trò | File | Size |
+| Vai trÃ² | File | Size |
 |---|---|--:|
-| primary (bắt buộc) | `gemma-4-E2B-it-UD-Q4_K_XL.gguf` | 2.97 GB |
-| compare (bắt buộc) | `gemma-4-E2B-it-UD-Q2_K_XL.gguf` | 2.24 GB |
+| primary (báº¯t buá»c) | `gemma-4-E2B-it-UD-Q4_K_XL.gguf` | 2.97 GB |
+| compare (báº¯t buá»c) | `gemma-4-E2B-it-UD-Q2_K_XL.gguf` | 2.24 GB |
 | bonus C1 (optional) | `mtp-gemma-4-E2B-it.gguf` | 0.09 GB |
 
-Bạn cần **hai file đầu**. Thiếu file `compare` thì mất hàng thứ hai của rubric 3–5.
+Báº¡n cáº§n **hai file Äáº§u**. Thiáº¿u file `compare` thÃ¬ máº¥t hÃ ng thá»© hai cá»§a rubric 3â5.
 
-## Option B — Qwen3.5 0.8B (nhỏ, ~0.9 GB)
+## Option B â Qwen3.5 0.8B (nhá», ~0.9 GB)
 
-**[unsloth/Qwen3.5-0.8B-GGUF](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF)** — Apache-2.0, không gated.
+**[unsloth/Qwen3.5-0.8B-GGUF](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF)** â Apache-2.0, khÃ´ng gated.
 Xem file: [tree/main](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/tree/main)
 
-| Vai trò | File | Size |
+| Vai trÃ² | File | Size |
 |---|---|--:|
 | primary | `Qwen3.5-0.8B-Q4_K_M.gguf` | 0.50 GB |
 | compare | `Qwen3.5-0.8B-UD-Q2_K_XL.gguf` | 0.39 GB |
@@ -45,7 +45,7 @@ curl -L -o models/Qwen3.5-0.8B-UD-Q2_K_XL.gguf \
   https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-UD-Q2_K_XL.gguf
 ```
 
-Rồi ghi manifest với **cùng** `LAB_MODEL` bạn dùng:
+Rá»i ghi manifest vá»i **cÃ¹ng** `LAB_MODEL` báº¡n dÃ¹ng:
 
 ```bash
 LAB_MODEL=qwen35-0.8b .venv/bin/python labs/00-setup/download-model.py --skip-download
@@ -53,9 +53,9 @@ LAB_MODEL=qwen35-0.8b .venv/bin/python labs/00-setup/download-model.py --skip-do
 
 ---
 
-## Cách 1 — curl / wget (cho Gemma 4 E2B)
+## CÃ¡ch 1 â curl / wget (cho Gemma 4 E2B)
 
-Chạy ở **repo root**:
+Cháº¡y á» **repo root**:
 
 ```bash
 mkdir -p models
@@ -67,8 +67,8 @@ curl -L -o models/gemma-4-E2B-it-UD-Q2_K_XL.gguf \
   https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-UD-Q2_K_XL.gguf
 ```
 
-`-L` là bắt buộc — Hugging Face redirect sang CDN. Nếu bị ngắt giữa đường, thêm `-C -`
-để tiếp tục thay vì tải lại từ đầu:
+`-L` lÃ  báº¯t buá»c â Hugging Face redirect sang CDN. Náº¿u bá» ngáº¯t giá»¯a ÄÆ°á»ng, thÃªm `-C -`
+Äá» tiáº¿p tá»¥c thay vÃ¬ táº£i láº¡i tá»« Äáº§u:
 
 ```bash
 curl -L -C - -o models/gemma-4-E2B-it-UD-Q4_K_XL.gguf \
@@ -85,75 +85,75 @@ curl.exe -L -o models\gemma-4-E2B-it-UD-Q2_K_XL.gguf `
   https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-UD-Q2_K_XL.gguf
 ```
 
-## Cách 2 — mirror (khi Hugging Face bị chặn hẳn)
+## CÃ¡ch 2 â mirror (khi Hugging Face bá» cháº·n háº³n)
 
-`hf-mirror.com` dùng **đúng đường dẫn**, chỉ đổi hostname:
+`hf-mirror.com` dÃ¹ng **ÄÃºng ÄÆ°á»ng dáº«n**, chá» Äá»i hostname:
 
 ```bash
 curl -L -o models/gemma-4-E2B-it-UD-Q4_K_XL.gguf \
   https://hf-mirror.com/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-UD-Q4_K_XL.gguf
 ```
 
-Hoặc set biến môi trường rồi để script tự tải như bình thường:
+Hoáº·c set biáº¿n mÃ´i trÆ°á»ng rá»i Äá» script tá»± táº£i nhÆ° bÃ¬nh thÆ°á»ng:
 
 ```bash
 HF_ENDPOINT=https://hf-mirror.com make setup
 ```
 
-## Cách 3 — browser
+## CÃ¡ch 3 â browser
 
-Mở [tree/main](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/tree/main), bấm icon ⬇
-cạnh hai file, rồi copy chúng vào `models/` trong repo. Thư mục con thoải mái — script
-tìm đệ quy.
+Má» [tree/main](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/tree/main), báº¥m icon â¬
+cáº¡nh hai file, rá»i copy chÃºng vÃ o `models/` trong repo. ThÆ° má»¥c con thoáº£i mÃ¡i â script
+tÃ¬m Äá» quy.
 
-## Sau khi có file: ghi manifest
+## Sau khi cÃ³ file: ghi manifest
 
 ```bash
 .venv/bin/python labs/00-setup/download-model.py --skip-download                    # Gemma
 LAB_MODEL=qwen35-0.8b .venv/bin/python labs/00-setup/download-model.py --skip-download   # Qwen
 ```
 
-Lệnh này không tải gì, chỉ tìm file và ghi `models/active.json` (rubric item 2). Thêm
-`--with-mtp` nếu bạn cũng tải MTP head.
+Lá»nh nÃ y khÃ´ng táº£i gÃ¬, chá» tÃ¬m file vÃ  ghi `models/active.json` (rubric item 2). ThÃªm
+`--with-mtp` náº¿u báº¡n cÅ©ng táº£i MTP head.
 
-Kiểm tra:
+Kiá»m tra:
 
 ```bash
-make verify      # mục "Model manifest" phải PASS
+make verify      # má»¥c "Model manifest" pháº£i PASS
 ```
 
-## Kiểm tra file có nguyên vẹn không
+## Kiá»m tra file cÃ³ nguyÃªn váº¹n khÃ´ng
 
-Nếu server báo lỗi lạ khi load model, khả năng cao file bị tải thiếu. So size:
+Náº¿u server bÃ¡o lá»i láº¡ khi load model, kháº£ nÄng cao file bá» táº£i thiáº¿u. So size:
 
 ```bash
 ls -l models/*.gguf
 ```
 
-Phải khớp bảng của model bạn chọn (Gemma: 2.97 + 2.24 GB · Qwen: 0.50 + 0.39 GB).
-File nhỏ hơn đáng kể = tải dở, xoá và tải lại.
+Pháº£i khá»p báº£ng cá»§a model báº¡n chá»n (Gemma: 2.97 + 2.24 GB Â· Qwen: 0.50 + 0.39 GB).
+File nhá» hÆ¡n ÄÃ¡ng ká» = táº£i dá», xoÃ¡ vÃ  táº£i láº¡i.
 
-## Nếu tên file không khớp
+## Náº¿u tÃªn file khÃ´ng khá»p
 
-`--skip-download` tìm đúng tên trong bảng trên. Unsloth đôi khi re-upload với nhãn quant
-khác. Khi đó: đổi tên file cho khớp, **hoặc** sửa tuple `primary` / `compare` trong dict `MODELS` ở
-[`lib/labkit.py`](../../lib/labkit.py) và ghi lại việc đó trong REFLECTION §1.
+`--skip-download` tÃ¬m ÄÃºng tÃªn trong báº£ng trÃªn. Unsloth ÄÃ´i khi re-upload vá»i nhÃ£n quant
+khÃ¡c. Khi ÄÃ³: Äá»i tÃªn file cho khá»p, **hoáº·c** sá»­a tuple `primary` / `compare` trong dict `MODELS` á»
+[`lib/labkit.py`](../../lib/labkit.py) vÃ  ghi láº¡i viá»c ÄÃ³ trong REFLECTION Â§1.
 
-## Runtime binary cũng bị chặn?
+## Runtime binary cÅ©ng bá» cháº·n?
 
-`fetch-runtime.py` tải từ GitHub Releases, thường thông khi Hugging Face bị chặn. Nếu cả
-GitHub cũng bị chặn:
+`fetch-runtime.py` táº£i tá»« GitHub Releases, thÆ°á»ng thÃ´ng khi Hugging Face bá» cháº·n. Náº¿u cáº£
+GitHub cÅ©ng bá» cháº·n:
 
 ```bash
-.venv/bin/python labs/00-setup/fetch-runtime.py --list      # in ra tên các asset
+.venv/bin/python labs/00-setup/fetch-runtime.py --list      # in ra tÃªn cÃ¡c asset
 ```
 
-Tải asset đúng platform của bạn từ
-<https://github.com/ggml-org/llama.cpp/releases/tag/b10488> rồi giải nén vào
-`runtime/b10488/`. Layout bên trong không quan trọng — lab tìm binary bằng glob.
+Táº£i asset ÄÃºng platform cá»§a báº¡n tá»«
+<https://github.com/ggml-org/llama.cpp/releases/tag/b10488> rá»i giáº£i nÃ©n vÃ o
+`runtime/b10488/`. Layout bÃªn trong khÃ´ng quan trá»ng â lab tÃ¬m binary báº±ng glob.
 
-## Vẫn không được?
+## Váº«n khÃ´ng ÄÆ°á»£c?
 
-Máy dưới 8 GB RAM: thử `LAB_MODEL=qwen35-0.8b` trước — chỉ ~0.9 GB.
-Dưới 4 GB RAM hoặc mạng không thông: dùng [`cloud/`](../../cloud/README.md)
-(Colab / Kaggle). Điểm không bị ảnh hưởng, chỉ cần khai báo ở REFLECTION §1.
+MÃ¡y dÆ°á»i 8 GB RAM: thá»­ `LAB_MODEL=qwen35-0.8b` trÆ°á»c â chá» ~0.9 GB.
+DÆ°á»i 4 GB RAM hoáº·c máº¡ng khÃ´ng thÃ´ng: dÃ¹ng [`cloud/`](../../cloud/README.md)
+(Colab / Kaggle). Äiá»m khÃ´ng bá» áº£nh hÆ°á»ng, chá» cáº§n khai bÃ¡o á» REFLECTION Â§1.

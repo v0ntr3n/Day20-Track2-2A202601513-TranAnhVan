@@ -1,8 +1,8 @@
-# 02 — Serve
+# 02 â Serve
 
 Step up from "measure a model" to "run a serving stack". Same shape as the vLLM and
-SGLang setups in the deck — OpenAI-compatible HTTP, continuous batching, Prometheus
-metrics — on a model small enough to fit your laptop.
+SGLang setups in the deck â OpenAI-compatible HTTP, continuous batching, Prometheus
+metrics â on a model small enough to fit your laptop.
 
 There is **one** server. The prebuilt native binary gives you `/metrics`,
 `--parallel` and `--cont-batching` out of the box, so nothing here needs a build.
@@ -10,7 +10,7 @@ There is **one** server. The prebuilt native binary gives you `/metrics`,
 ## The run, in order
 
 ```bash
-# terminal 1 — leave it running
+# terminal 1 â leave it running
 make serve
 
 # terminal 2
@@ -39,15 +39,15 @@ gauges all read ~1. That is the single most common mistake in this track.
 
 ## Reading the load report
 
-`load-report.py` computes **effective concurrency** with Little's Law — `L = λ × W`,
-arrival rate times time in system — and compares it to your `--parallel` slot count:
+`load-report.py` computes **effective concurrency** with Little's Law â `L = Î» Ã W`,
+arrival rate times time in system â and compares it to your `--parallel` slot count:
 
-- **Effective concurrency ≤ slots** → requests found a free slot on arrival. The
+- **Effective concurrency â¤ slots** â requests found a free slot on arrival. The
   latency you see is compute.
-- **Effective concurrency > slots** → requests queued. The extra P95 is *wait* time,
+- **Effective concurrency > slots** â requests queued. The extra P95 is *wait* time,
   not compute time.
 
-That gap is the whole goodput-vs-throughput argument from §8. Past saturation you buy
+That gap is the whole goodput-vs-throughput argument from Â§8. Past saturation you buy
 throughput by spending latency, and if your SLO is a P95 target, the requests you
 added are no longer being served within it. Peak throughput and goodput@SLO stop being
 the same number, and only one of them is what users experience.
@@ -57,11 +57,11 @@ the same number, and only one of them is what users experience.
 `llamacpp:n_busy_slots_per_decode` is the average number of slots doing useful work
 per decode step:
 
-- near **1** under load → requests are being serialized, not batched
-- climbing toward **`--parallel`** → the scheduler is packing concurrent requests into
+- near **1** under load â requests are being serialized, not batched
+- climbing toward **`--parallel`** â the scheduler is packing concurrent requests into
   shared decode steps. That is continuous batching, and it is why throughput rises
   faster than latency does.
-- `requests_deferred` above 0 → more requests arrived than there were slots
+- `requests_deferred` above 0 â more requests arrived than there were slots
 
 ## Knobs worth trying
 
@@ -78,7 +78,7 @@ Anything after `--` goes straight to `llama-server`:
 | Flag | Measure this |
 |---|---|
 | `--parallel N` | P95 at `-u 50` for N = 1, 2, 4, 8 |
-| `--ctx-size` | RAM (RSS) as context grows — that is KV cache |
+| `--ctx-size` | RAM (RSS) as context grows â that is KV cache |
 | `--cache-type-k/v` | RAM saved vs quality lost |
 
 The most instructive experiment in this track: run `make load-50` at `--parallel 1`
@@ -91,7 +91,7 @@ lot more than the other.
 |---|---|
 | `POST /v1/chat/completions` | OpenAI-compatible; works with the `openai` SDK pointed at `http://localhost:8080/v1` |
 | `GET /metrics` | Prometheus text |
-| `GET /slots` | per-slot state — useful for seeing batching directly |
+| `GET /slots` | per-slot state â useful for seeing batching directly |
 | `GET /health` | readiness (this is what `serve_bg` polls) |
 | `GET /props` | the server's active configuration |
 
